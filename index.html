@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UI 实验室</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>UI 实验室</h1>
+    <p>这里展示一些有趣的界面交互与动效实验</p>
+  </header>
+
+  <main id="grid"></main>
+
+  <footer>
+    <p>由 <a href="https://github.com" target="_blank">GitHub Pages</a> 驱动</p>
+  </footer>
+
+  <script>
+    // 读取实验列表（放在 experiments/list.json）
+    async function loadExperiments() {
+      const res = await fetch('./experiments/list.json');
+      const list = await res.json();
+      const grid = document.getElementById('grid');
+
+      list.forEach(item => {
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = `./experiments/${item.id}/index.html`;
+        card.innerHTML = `
+          <div class="card__title">${item.title}</div>
+          <div class="card__meta">${(item.tags || []).join(' · ')}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    loadExperiments();
+  </script>
+</body>
+</html>
