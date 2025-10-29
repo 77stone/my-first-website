@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3f4f6;
+    font-family: system-ui, sans-serif;
+  }
+  
+  .btn {
+    padding: 16px 40px;
+    font-size: 18px;
+    color: white;
+    background-color: #0078d7;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 0 #005a9e;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  
+  .btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #005a9e;
+  }
+  
