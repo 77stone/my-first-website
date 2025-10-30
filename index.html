@@ -1,43 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UI 实验室</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Qi Guo — UI Portfolio</title>
+  <!-- 引入 Fluent Web Components（CDN） -->
+  <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
+  <style>
+    :root { --max: 1100px; }
+    body { margin:0; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Arial; background:#f5f6f8; }
+    header { max-width:var(--max); margin:40px auto 16px; padding:0 16px; }
+    h1 { margin:0 0 4px; font-size:32px; }
+    p { margin:0; color:#5a5f6a; }
+    main { max-width:var(--max); margin:24px auto 60px; padding:0 16px;
+           display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+    fluent-card { padding:16px; display:block; }
+    .card-title { font-weight:600; margin-bottom:8px; }
+    .thumb { width:100%; height:140px; background:#e8ebf2; border-radius:10px; margin-bottom:12px; }
+    footer { text-align:center; color:#7b8190; padding:24px; }
+  </style>
 </head>
 <body>
   <header>
-    <h1>UI 实验室</h1>
-    <p>这里展示一些有趣的界面交互与动效实验</p>
+    <h1>Qi Guo — UI/UX Portfolio</h1>
+    <p>小而美的交互与动效实验</p>
+    <div style="margin-top:12px; display:flex; gap:8px;">
+      <fluent-button appearance="accent">联系我</fluent-button>
+      <fluent-button appearance="outline">下载简历</fluent-button>
+    </div>
   </header>
 
-  <main id="grid"></main>
+  <main>
+    <fluent-card>
+      <div class="thumb"></div>
+      <div class="card-title">弹簧卡片</div>
+      <div style="color:#667085; font-size:14px;">Motion · Hover</div>
+      <div style="margin-top:12px;">
+        <fluent-button appearance="stealth" href="./works/001-spring-card/index.html">查看</fluent-button>
+      </div>
+    </fluent-card>
 
-  <footer>
-    <p>由 <a href="https://github.com" target="_blank">GitHub Pages</a> 驱动</p>
-  </footer>
+    <fluent-card>
+      <div class="thumb"></div>
+      <div class="card-title">按压按钮</div>
+      <div style="color:#667085; font-size:14px;">Click · Feedback</div>
+      <div style="margin-top:12px;">
+        <fluent-button appearance="stealth" href="./works/002-gesture-button/index.html">查看</fluent-button>
+      </div>
+    </fluent-card>
+  </main>
 
-  <script>
-    // 读取实验列表（放在 experiments/list.json）
-    async function loadExperiments() {
-      const res = await fetch('./experiments/list.json');
-      const list = await res.json();
-      const grid = document.getElementById('grid');
-
-      list.forEach(item => {
-        const card = document.createElement('a');
-        card.className = 'card';
-        card.href = `./experiments/${item.id}/index.html`;
-        card.innerHTML = `
-          <div class="card__title">${item.title}</div>
-          <div class="card__meta">${(item.tags || []).join(' · ')}</div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    loadExperiments();
-  </script>
+  <footer>Powered by Fluent UI · GitHub Pages</footer>
 </body>
 </html>
